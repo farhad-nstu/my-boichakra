@@ -1,0 +1,42 @@
+User type
+*Admin
+*User
+* user Address
+*user redirect after login
+
+
+login middleware for user 
+
+login middleware for admin ** ok
+
+------------------book--------------
+
+book genre table
+book language table
+book tag table
+
+Category Controller
+
+***add buttom***
+add publisher in----------add book
+add category in----------add book
+add writer in----------add book
+
+------------------book--------------
+
+
+
+Register
+*role_id check
+
+Menu
+*Dropdown
+
+front panel mastering
+
+admin panel mastering
+
+section include
+
+	
+	

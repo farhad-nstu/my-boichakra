@@ -1,0 +1,141 @@
+@extends('admin.master')
+
+@section('title')
+    Add Publisher | Admin | Boi Chakra
+@endsection
+
+@section('body')
+
+    @include('admin.include.dashboard-banner')
+
+   
+    
+<button class="btn btn-success" style="margin-left: 900px; margin-top: 10px;"><a href="{{ route('add-book-languages') }}" style="color: white;">Add Languages</a></button>
+
+
+
+
+<main id="tg-main" class="tg-main tg-haslayout">
+      <!--************************************
+          Section Start
+      *************************************-->
+      <section class="tg-dbsectionspace tg-haslayout">
+        <div class="row">
+          <form class="tg-formtheme tg-formdashboard">
+            <fieldset>
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="tg-dashboardbox">
+                  <div class="tg-dashboardboxtitle">
+                    <h2>My Ads</h2>
+                  </div>
+                  <div class="tg-dashboardholder">
+                    <nav class="tg-navtabledata">
+                      <ul>
+                        <li class="tg-active"><a href="*">All Ads (50)</a></li>
+                        <li><a href="*">Featured (12)</a></li>
+                        <li><a href="javascript:void(0);" data-category="active">Active (42)</a></li>
+                        <li><a href="javascript:void(0);" data-category="inactive">Inactive (03)</a></li>
+                        <li><a href="javascript:void(0);" data-category="sold">Sold (02)</a></li>
+                        <li><a href="javascript:void(0);" data-category="expired">Expired (01)</a></li>
+                        <li><a href="javascript:void(0);" data-category="deleted">Deleted (03)</a></li>
+                      </ul>
+                    </nav>
+                    <div class="tg-otherfilters">
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-5 col-lg-4 pull-left">
+                          <div class="form-group tg-sortby">
+                            <span>Sort by:</span>
+                            <div class="tg-select">
+                              <select>
+                                <option>Most Recent</option>
+                                <option>Most Recent</option>
+                                <option>Most Recent</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4 pull-right">
+                          <div class="form-group tg-inputwithicon">
+                            <i class="icon-magnifier"></i>
+                            <input type="search" name="search" class="form-control" placeholder="Search Here">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <table id="tg-adstype" class="table tg-dashboardtable tg-tablemyads">
+                      <thead>
+                        <tr>
+                          
+                          <th>SI No.</th>
+                          <th>Title</th>
+                          <th>Ad Status</th>
+                          <th>Date</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        
+                          
+                          
+                        @php($i=1)
+                        @foreach($allLanguage as $all)
+                 
+                        <tr>
+                          
+                          <td data-title="si_no">{{ $i++ }}</td>
+
+                          <td data-title="Language Name">
+                            
+                            <span>{{ $all->book_language_name }}</span>
+                          </td>
+                          <td data-title="Status">
+                            
+                            @if($all->status == 1)
+                                <span class="tg-adstatus tg-adstatusactive">active</span>
+                            @endif
+                            
+                            @if($all->status == 0)
+                                <span class="tg-adstatus tg-adstatusdeleted">Deactive</span>
+                            @endif
+                            
+                        </td>
+                        <td>{{ date('d/m/y', strtotime($all->created_at)) }}</td>
+
+                          
+                          
+                          <td data-title="Action">
+                            <div class="tg-btnsactions">
+                              <a class="tg-btnaction tg-btnactionview" href="{{ route('update-book-language-status', $all->id) }}"><i class="fa fa-eye"></i></a>
+                              <a class="tg-btnaction tg-btnactionedit" href="{{ route('edit-book-languages', $all->id) }}"><i class="fa fa-pencil"></i></a>
+                              <a class="tg-btnaction tg-btnactiondelete" href="{{ route('delete-book-languages', $all->id) }}"><i class="fa fa-trash"></i></a>
+                            </div>
+                          </td>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                      </table>
+                       <div class="text-center">{!! $allLanguage->links() !!}</div>
+                      
+                      
+                    </nav>  
+                   
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </section>
+      <!--************************************
+          Section End
+      *************************************-->
+    </main>
+
+    
+
+
+
+
+
+
+@endsection                

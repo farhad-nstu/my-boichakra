@@ -1,0 +1,138 @@
+<li><a href="#" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $product->id }}').submit();" >Delete</a></li>
+
+                            <form id="delete-form-{{ $product->id }}" action="{{ route('products.destroy',$product->id) }}" method="POST" style="display: none;">
+                                @csrf @method('delete')
+                            </form>
+
+
+
+
+
+
+
+
+
+
+<div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container">
+
+                        <!-- Page-Title -->
+                       
+                        <!-- Start Widget -->
+                        <div class="row">
+                            <!-- Basic example -->
+                            <div class="col-md-8 col-md-offset-2">
+                                <div class="panel panel-purple">
+                                    <div class="panel-heading"><span class="panel-title">Edit Publisher</span></div><br>
+                                   
+                                    <div class="panel-body">
+                                        <form role="form" action="{{ route('update-book-publisher',[$editBook->id]) }}" method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Publisher Name</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1" name="publisher_name" value="{{ $editBook->publisher_name }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Publisher Detail</label>
+                                                <input type="text" class="form-control" id="exampleInputPassword1" name="publisher_details" value="{{ $editBook->publisher_details }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Publisher Status</label>
+                                                <input type="number" class="form-control" id="exampleInputPassword1" name="status" value="{{ $editBook->status }}">
+                                            </div>                                            
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Category Id</label>
+                                                <input type="number" class="form-control" id="exampleInputPassword1" name="category_id" value="{{ $editBook->category_id }}">
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <img id="image" src="#">
+                                                <label for="exampleInputPassword1">Publisher Image</label>
+                                                <input type="file" id="exampleInputPassword1" name="image" accept="image/*" class="upload" onchange="readURL(this)">
+                                                <input type="hidden" name="old_product_image" value="{{ $editBook->image }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <img id="image" src="{{ URL::to($editBook->image) }}" style="height: 100px;width: 100px;">
+                                                <label for="exampleInputPassword1">Old Product Image</label>
+                                                <input type="hidden" name="old_product_image" value="{{ $editBook->image }}">
+                                            </div>
+                                            
+                                            <button type="submit" class="btn btn-purple waves-effect waves-light btn btn-success">Update</button>
+                                        </form>
+                                    </div><!-- panel-body -->
+                                </div> <!-- panel -->
+                            </div> <!-- col-->
+                        </div> 
+                        <!-- End row-->
+
+
+                    </div> <!-- container -->
+                               
+                </div> <!-- content -->
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// All publisher
+
+<div class="card-body">
+                  
+                   <table class="table table-hover table-striped" style="width: 70%; margin-top: 50px;" border="1" align="center" >
+                      <tr>
+                        <th>#</th>
+                        <br>
+                        <th>Title</th>
+                        
+                        <th>Publisher Details</th>
+                        <th>status</th>
+                        
+                        <th>Publisher Image</th>
+                        
+                        <th>Action</th>
+                      </tr>
+
+                       @foreach($allBook as $pbl)
+
+                         <tr>
+                          <td>{{ $pbl->id }}</td>
+                          <td>{{ $pbl->publisher_name }}</td>
+                          <td>{{ $pbl->publisher_details }}</td>
+                          <td>{{ $pbl->status }}</td>
+                          
+                          
+                          <td><img src="{{ $pbl->image }}" style="height: 60px;width: 60px;"></td>
+
+                          <td>
+                                    <ul class="d-flex justify-content-center">
+                                        <a href="{{ route('edit-book-publisher',[ $pbl->id ])}}" class="btn btn-primary">Edit</a>
+                                        
+                                        <a href="{{ route('delete-book-publisher',[ $pbl->id ])}}" class="btn btn-danger">Delete</a>
+
+                                        <a href="{{ route('view-book-publisher',[ $pbl->id ])}}" class="btn btn-info">View</a>
+                                        
+
+                                    </ul>
+                                </td>
+
+                         </tr>
+
+                      @endforeach 
+                   </table>
+                </div>           
+
+
+
+
